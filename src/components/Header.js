@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const navBar = [
   { path: "/friends", text: "Friends" },
-  { path: "/friends/register", text: "Add New Friend" },
+  { path: "/friends/add", text: "Add New Friend" },
 ];
 
 const Header = () => {
@@ -15,16 +15,16 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <h2>Friends Database</h2>
+    <header className="flex items-center justify-center mx-auto border-b-4 mb-16 border-black">
+      <h2 className="text-3xl font-black mr-24">Friends Database</h2>
       <nav className="my-6">
         {!authUser.username && (
           <NavLink
             exact
             className={(isActive) =>
               isActive
-                ? " active mx-5 p-5 bg-blue-400 text-black rounded-2xl"
-                : "mx-5 p-5 bg-black text-white rounded-2xl"
+                ? " active mr-[10px] p-5 bg-blue-400 text-black rounded-2xl inline-block"
+                : "mr-[10px] p-5 bg-black text-white rounded-2xl"
             }
             to="/login"
           >
@@ -37,8 +37,8 @@ const Header = () => {
             exact
             className={(isActive) =>
               isActive
-                ? " active mx-5 p-5 bg-blue-400 text-black rounded-2xl"
-                : "mx-5 p-5 bg-black text-white rounded-2xl"
+                ? " active mr-[10px] p-5 bg-blue-400 text-black rounded-2xl"
+                : "mr-[10px] p-5 bg-black text-white rounded-2xl"
             }
             to={link.path}
           >
@@ -47,7 +47,7 @@ const Header = () => {
         ))}
         {authUser.username && (
           <button
-            className="mx-5 p-5 bg-black text-white rounded-2xl"
+            className="p-5 bg-black text-white rounded-2xl"
             onClick={handleLogout}
           >
             Logout

@@ -1,11 +1,12 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const AuthContextProvider = ({ children }) => {
   const history = useHistory();
   const [authUser, setAuthUser] = useLocalStorage("s11g2", {});
+
   const userLogin = (loginFormData) => {
     axios
       .post("http://localhost:9000/api/login", loginFormData)
@@ -26,9 +27,23 @@ const AuthContextProvider = ({ children }) => {
       })
       .catch((err) => console.log(err.response.data.error));
   };
+
+  const addFriend = (addFormData) => {
+    axios
+      .post("http://localhost:9000/api/friends", addFormData, {
+        headers: { authorization: authUser.token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/friends");
+      })
+      .catch((err) => console.log(err.response.data.error));
+  };
   return (
     <>
-      <AuthContext.Provider value={{ userLogin, authUser, userLogout }}>
+      <AuthContext.Provider
+        value={{ userLogin, authUser, userLogout, addFriend }}
+      >
         {children}
       </AuthContext.Provider>
     </>

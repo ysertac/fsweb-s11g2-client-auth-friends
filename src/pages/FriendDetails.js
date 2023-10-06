@@ -20,8 +20,8 @@ const FriendDetails = () => {
   return (
     <>
       <p>Name: {friend.name};</p>
-      <p>Name: {friend.age};</p>
-      <p>Name: {friend.email};</p>
+      <p>Age: {friend.age};</p>
+      <p>Email: {friend.email};</p>
     </>
   );
 };

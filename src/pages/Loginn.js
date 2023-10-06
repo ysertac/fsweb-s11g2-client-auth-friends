@@ -47,7 +47,9 @@ const Loginn = () => {
           </label>
         </div>
         <div>
-          <button>GİRİŞ</button>
+          <button className="bg-purple-300 px-4 py-2 mt-3 rounded-xl">
+            GİRİŞ
+          </button>
         </div>
       </form>
     </>

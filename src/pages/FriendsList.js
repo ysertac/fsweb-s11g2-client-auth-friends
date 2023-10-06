@@ -6,19 +6,21 @@ import { AuthContext } from "../context/AuthContext";
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
   const { authUser } = useContext(AuthContext);
+
   useEffect(() => {
     axios
       .get("http://localhost:9000/api/friends", {
         headers: { authorization: authUser.token },
       })
       .then((res) => {
+        console.log(res.data);
         setFriends(res.data);
       })
       .catch((err) => console.log(err.response.data.error));
   }, []);
   return (
     <>
-      <h1>FRIENDS LIST</h1>
+      <h1 className="text-6xl font-black">FRIENDS LIST</h1>
       {friends.map((friend) => (
         <Friend friend={friend} key={friend.id} />
       ))}
